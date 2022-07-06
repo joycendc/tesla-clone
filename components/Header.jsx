@@ -25,17 +25,33 @@ const Header = () => {
         />
       </div>
       <Menu>
-        <a href="#">Model S</a>
-        <a href="#">Model 3</a>
-        <a href="#">Model X</a>
-        <a href="#">Model Y</a>
-        <a href="#">Solar Roof</a>
-        <a href="#">Solar Panels</a>
+        <a href="#" data-tooltip="Model S">
+          Model S
+        </a>
+        <a href="#" data-tooltip="Model 3">
+          Model 3
+        </a>
+        <a href="#" data-tooltip="Model X">
+          Model X
+        </a>
+        <a href="#" data-tooltip="Model Y">
+          Model Y
+        </a>
+        <a href="#" data-tooltip="Solar Roof">
+          Solar Roof
+        </a>
+        <a href="#" data-tooltip="Solar Panels">
+          Solar Panels
+        </a>
       </Menu>
       <RightMenu>
-        <a href="#">Shop</a>
-        <a href="#">Account</a>
-        <a href="#" onClick={handleMenuBar}>
+        <a href="#" data-tooltip="Shop">
+          Shop
+        </a>
+        <a href="#" data-tooltip="Account">
+          Account
+        </a>
+        <a href="#" data-tooltip="Menu" onClick={handleMenuBar}>
           Menu
         </a>
       </RightMenu>
@@ -176,6 +192,7 @@ const Menu = styled.div`
   justify-content: center;
 
   a {
+    position: relative;
     font-weight: 600;
     padding: 5px 15px;
     flex-wrap: no-wrap;
@@ -184,6 +201,28 @@ const Menu = styled.div`
   a:hover {
     background-color: rgba(23, 26, 32, 0.07);
     border-radius: 10px;
+  }
+
+  a:after {
+    content: "";
+    opacity: 0;
+    transition: all 0s;
+  }
+
+  a:hover:after {
+    content: attr(data-tooltip);
+    font-size: 12px;
+    font-weight: 400;
+    position: absolute;
+    bottom: -2.5em;
+    right: -1em;
+    background-color: #fff;
+    padding: 5px;
+    margin-left: -5px;
+    border: 0.5px solid #ddd;
+    z-index: 999;
+    opacity: 1;
+    transition-delay: 0.8s;
   }
 
   @media (max-width: 1200px) {
@@ -199,6 +238,7 @@ const RightMenu = styled.div`
 
   justify-content: flex-end;
   a {
+    position: relative;
     font-weight: 600;
     margin-right: 10px;
     padding: 5px 10px;
@@ -207,6 +247,28 @@ const RightMenu = styled.div`
   a:hover {
     background-color: rgba(23, 26, 32, 0.07);
     border-radius: 10px;
+  }
+
+  a:after {
+    content: "";
+    opacity: 0;
+    transition: all 0s;
+  }
+
+  a:hover:after {
+    content: attr(data-tooltip);
+    position: absolute;
+    font-size: 12px;
+    font-weight: 400;
+    bottom: -2.5em;
+    right: -1em;
+    background-color: #fff;
+    padding: 5px;
+    margin-left: -5px;
+    border: 0.5px solid #ddd;
+    z-index: 999;
+    opacity: 1;
+    transition-delay: 2s;
   }
 
   a:first-child,
