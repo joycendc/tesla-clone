@@ -5,9 +5,10 @@ import Footer from "./Footer";
 
 const Section = ({ backgroundImg, scrollY }) => {
   const [current, setCurrent] = useState({});
-  const h = typeof window !== "undefined" && window.document.body.offsetHeight;
+  const [h, setH] = useState(0);
 
   useEffect(() => {
+    setH(typeof window !== "undefined" && window.document.body.offsetHeight);
     displayModel();
   }, [scrollY]);
 
@@ -31,7 +32,8 @@ const Section = ({ backgroundImg, scrollY }) => {
     }
   };
 
-  const scroll = () => window.scrollBy(0, h * 2);
+  const scroll = () =>
+    typeof window !== "undefined" && window.document.body.scrollBy(0, h);
 
   return (
     <Wrap bgImage={backgroundImg}>
@@ -145,7 +147,7 @@ const DownArrow = styled.img`
   margin-bottom: 10px;
   filter: brightness(0%);
   /* animation: animateDown infinite 1.5s; */
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   z-index: 10;
   cursor: pointer;
   pointer-events: auto;
