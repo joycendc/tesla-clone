@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <Container>
-      <a
+      <div
         style={{
           flex: 1,
         }}
@@ -20,10 +20,10 @@ const Header = () => {
         <Image
           src="/images/logo.svg"
           alt="Tesla-Logo"
-          width={115}
+          width={100}
           height={15}
         />
-      </a>
+      </div>
       <Menu>
         <a href="#">Model S</a>
         <a href="#">Model 3</a>
@@ -162,7 +162,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 45px;
+  padding: 0 40px;
   top: 0;
   left: 0;
   right: 0;
@@ -174,6 +174,7 @@ const Menu = styled.div`
   flex: 2;
   align-items: center;
   justify-content: center;
+
   a {
     font-weight: 600;
     padding: 5px 15px;
@@ -195,6 +196,7 @@ const RightMenu = styled.div`
   flex: 1;
   align-items: center;
   cursor: pointer;
+
   justify-content: flex-end;
   a {
     font-weight: 600;
@@ -218,12 +220,6 @@ const RightMenu = styled.div`
     @media (max-width: 1200px) {
       background-color: rgba(23, 26, 32, 0.07);
       border-radius: 10px;
-    }
-  }
-
-  @media (max-width: 360px) {
-    a {
-      display: none;
     }
   }
 `;

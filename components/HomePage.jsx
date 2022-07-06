@@ -6,6 +6,7 @@ const Home = () => {
   const prevScrollY = useRef(0);
   const [goingUp, setGoingUp] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const wrap = useRef(null);
 
   const onScroll = (e) => {
     const currentScrollY = e.target.scrollTop;
@@ -22,15 +23,35 @@ const Home = () => {
     setScrollY(currentScrollY);
   };
 
+  const scroll = () => {
+    typeof window !== "undefined" &&
+      wrap.current.scrollBy({
+        top: window.document.body.clientHeight,
+        behavior: "smooth",
+      });
+  };
+
   return (
-    <Container onScroll={onScroll}>
-      <Section backgroundImg="model-3.jpg" scrollY={scrollY} />
-      <Section backgroundImg="model-y.jpg" scrollY={scrollY} />
-      <Section backgroundImg="model-s.jpg" scrollY={scrollY} />
-      <Section backgroundImg="model-x.jpg" scrollY={scrollY} />
-      <Section backgroundImg="solar-panel.jpg" scrollY={scrollY} />
-      <Section backgroundImg="solar-roof.jpg" scrollY={scrollY} />
-      <Section backgroundImg="accessories.jpg" scrollY={scrollY} />
+    <Container onScroll={onScroll} ref={wrap}>
+      <Section backgroundImg="model-3.jpg" scrollY={scrollY} scroll={scroll} />
+      <Section backgroundImg="model-y.jpg" scrollY={scrollY} scroll={scroll} />
+      <Section backgroundImg="model-s.jpg" scrollY={scrollY} scroll={scroll} />
+      <Section backgroundImg="model-x.jpg" scrollY={scrollY} scroll={scroll} />
+      <Section
+        backgroundImg="solar-panel.jpg"
+        scrollY={scrollY}
+        scroll={scroll}
+      />
+      <Section
+        backgroundImg="solar-roof.jpg"
+        scrollY={scrollY}
+        scroll={scroll}
+      />
+      <Section
+        backgroundImg="accessories.jpg"
+        scrollY={scrollY}
+        scroll={scroll}
+      />
     </Container>
   );
 };

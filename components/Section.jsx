@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Fade from "react-reveal/Fade";
 import Footer from "./Footer";
 
-const Section = ({ backgroundImg, scrollY }) => {
+const Section = ({ backgroundImg, scrollY, scroll }) => {
   const [current, setCurrent] = useState({});
   const [h, setH] = useState(0);
 
   useEffect(() => {
-    setH(typeof window !== "undefined" && window.document.body.offsetHeight);
+    setH(typeof window !== "undefined" && window.document.body.clientHeight);
     displayModel();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollY]);
 
   const displayModel = () => {
@@ -31,9 +32,6 @@ const Section = ({ backgroundImg, scrollY }) => {
       setCurrent(data[0]);
     }
   };
-
-  const scroll = () =>
-    typeof window !== "undefined" && window.document.body.scrollBy(0, h);
 
   return (
     <Wrap bgImage={backgroundImg}>
